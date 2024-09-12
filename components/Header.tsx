@@ -30,13 +30,15 @@ export default function Header() {
     >
       <nav className="flex justify-between items-center max-w-7xl mx-auto">
         <Link href="/" className="flex items-center">
-          <Image
-            src="/logo.png"
-            alt="Parsons AI Logo"
-            width={40}
-            height={40}
-            className="mr-2"
-          />
+          <div className="relative w-12 h-12 mr-4"> {/* Increased size and margin */}
+            <Image
+              src="/logo.png"
+              alt="Parsons AI Logo"
+              layout="fill"
+              objectFit="contain"
+              className="mr-2"
+            />
+          </div>
           <motion.span className="text-2xl font-bold" style={{ color: textColor }}>Parsons AI</motion.span>
         </Link>
         
