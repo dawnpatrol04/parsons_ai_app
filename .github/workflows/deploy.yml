@@ -25,14 +25,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Build
-      run: npm run build
-
-    - name: Export static site
-      run: npm run export  # This generates the static files in the "out" directory
+    - name: Build and export static site
+      run: npm run build  # No need to run `npm run export` as it's integrated in `npm run build`
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./out  # Make sure the export directory is correct
+        publish_dir: ./out  # This should point to the output folder created by the build
