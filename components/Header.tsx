@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Menu } from 'lucide-react'
 
@@ -21,15 +21,24 @@ export default function Header() {
     ['rgba(255, 255, 255, 1)', 'rgba(79, 70, 229, 1)']
   )
 
-  const currentTextColor = useTransform(textColor, latest => latest)
-  const currentBackgroundColor = useTransform(backgroundColor, latest => latest)
+  const [currentBgColor, setCurrentBgColor] = useState('rgba(79, 70, 229, 0.9)')
+  const [currentTextColor, setCurrentTextColor] = useState('rgba(255, 255, 255, 1)')
+
+  useEffect(() => {
+    const unsubscribeBg = backgroundColor.onChange(setCurrentBgColor)
+    const unsubscribeText = textColor.onChange(setCurrentTextColor)
+    return () => {
+      unsubscribeBg()
+      unsubscribeText()
+    }
+  }, [backgroundColor, textColor])
 
   const navItems = ['CUSTOM', 'PRODUCTS', 'AI', 'ROBOTICS', 'ABOUT', 'CONTACT']
 
   return (
     <motion.header 
       className="py-4 px-6 fixed top-0 left-0 right-0 z-50 backdrop-blur-md"
-      style={{ backgroundColor: currentBackgroundColor }}
+      style={{ backgroundColor: currentBgColor }}
     >
       <nav className="flex justify-between items-center max-w-7xl mx-auto">
         <Link href="/" className="flex items-center">
@@ -42,18 +51,20 @@ export default function Header() {
               className="mr-2"
             />
           </div>
-          <motion.span className="text-2xl font-bold" style={{ color: currentTextColor }}>Parsons AI</motion.span>
+          <span className="text-2xl font-bold" style={{ color: currentTextColor }}>Parsons AI</span>
         </Link>
         
-        <motion.button 
+        {/* Mobile menu button */}
+        <button 
           className="md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
           style={{ color: currentTextColor }}
         >
           <Menu size={24} />
-        </motion.button>
+        </button>
 
+        {/* Desktop navigation */}
         <div className="hidden md:flex space-x-6">
           {navItems.map((item) => (
             <motion.a
@@ -76,13 +87,14 @@ export default function Header() {
           ))}
         </div>
 
+        {/* Mobile navigation */}
         {isMenuOpen && (
-          <motion.div 
+          <div 
             className="absolute top-full left-0 right-0 md:hidden"
-            style={{ backgroundColor: currentBackgroundColor }}
+            style={{ backgroundColor: currentBgColor }}
           >
             {navItems.map((item) => (
-              <motion.a
+              <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 className="block py-2 px-4 text-sm font-medium hover:bg-opacity-10 hover:bg-white"
@@ -90,9 +102,9 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item}
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
+          </div>
         )}
 
         <motion.div
