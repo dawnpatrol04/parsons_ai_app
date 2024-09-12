@@ -10,7 +10,12 @@ import { Menu } from 'lucide-react'
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const navItems = ['CUSTOM', 'PRODUCTS', 'AI', 'ROBOTICS', 'ABOUT']
+  const navItems = [
+    { name: 'CUSTOM', href: '#custom-solutions' },
+    { name: 'PRODUCTS', href: '#products' },
+    { name: 'ABOUT', href: '#about' },
+    { name: 'CONTACT', href: '#contact' }
+  ]
 
   return (
     <header className="py-4 px-6 bg-black fixed top-0 left-0 right-0 z-50">
@@ -38,13 +43,13 @@ export default function Header() {
         <div className="hidden md:flex space-x-6">
           {navItems.map((item) => (
             <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.name}
+              href={item.href}
               className="text-sm font-medium text-white hover:text-cyan-400 transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {item}
+              {item.name}
             </motion.a>
           ))}
         </div>
@@ -53,12 +58,12 @@ export default function Header() {
           <div className="absolute top-full left-0 right-0 bg-black md:hidden">
             {navItems.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.name}
+                href={item.href}
                 className="block py-2 px-4 text-sm font-medium text-white hover:text-cyan-400 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item}
+                {item.name}
               </a>
             ))}
           </div>
