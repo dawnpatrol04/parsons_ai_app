@@ -46,8 +46,8 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Parsons AI Logo"
-              layout="fill"
-              objectFit="contain"
+              fill
+              style={{ objectFit: 'contain' }}
               className="mr-2"
             />
           </div>
@@ -67,13 +67,11 @@ export default function Header() {
         {/* Desktop navigation */}
         <div className="hidden md:flex space-x-6">
           {navItems.map((item) => (
-            <motion.a
+            <Link
               key={item}
               href={`#${item.toLowerCase()}`}
               className="text-sm font-medium relative"
               style={{ color: currentTextColor }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
             >
               {item}
               <motion.div
@@ -83,7 +81,7 @@ export default function Header() {
                 whileHover={{ scaleX: 1 }}
                 transition={{ duration: 0.2 }}
               />
-            </motion.a>
+            </Link>
           ))}
         </div>
 
@@ -94,7 +92,7 @@ export default function Header() {
             style={{ backgroundColor: currentBgColor }}
           >
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 className="block py-2 px-4 text-sm font-medium hover:bg-opacity-10 hover:bg-white"
@@ -102,7 +100,7 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item}
-              </a>
+              </Link>
             ))}
           </div>
         )}
