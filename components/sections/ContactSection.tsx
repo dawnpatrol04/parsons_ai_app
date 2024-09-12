@@ -21,19 +21,20 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="py-20 px-6 bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-800 text-white">
-      <div className="max-w-4xl mx-auto">
+    <section className="pt-40 bg-gradient-to-b from-indigo-800 to-blue-900 text-white relative">
+      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-indigo-800 to-transparent"></div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-20">
         <motion.h2 
-          className="text-6xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-300"
-          initial={{ opacity: 0, y: -20 }}
+          className="text-4xl md:text-5xl font-bold mb-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Contact Us
+          Contact <span className="text-cyan-400">Parsons AI</span>
         </motion.h2>
         <motion.p 
-          className="text-xl mb-12 text-center text-indigo-200 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: -20 }}
+          className="text-xl mb-12 text-center text-gray-300 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
@@ -47,54 +48,54 @@ export default function ContactForm() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <div className="relative">
-            <Label htmlFor="name" className="text-indigo-200 mb-2 block">Name</Label>
+            <Label htmlFor="name" className="text-gray-300 mb-2 block">Name</Label>
             <div className="relative">
               <Input 
                 id="name" 
                 name="name" 
                 required 
-                className="pl-10 bg-white/10 border-indigo-300/30 text-white placeholder-indigo-300/50 focus:border-indigo-400 focus:ring focus:ring-indigo-400/30"
+                className="pl-10 bg-white bg-opacity-10 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring focus:ring-cyan-400/30"
                 placeholder="Your Name"
               />
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-indigo-300/70" />
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             </div>
           </div>
           <div className="relative">
-            <Label htmlFor="email" className="text-indigo-200 mb-2 block">Email</Label>
+            <Label htmlFor="email" className="text-gray-300 mb-2 block">Email</Label>
             <div className="relative">
               <Input 
                 id="email" 
                 name="email" 
                 type="email" 
                 required 
-                className="pl-10 bg-white/10 border-indigo-300/30 text-white placeholder-indigo-300/50 focus:border-indigo-400 focus:ring focus:ring-indigo-400/30"
+                className="pl-10 bg-white bg-opacity-10 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring focus:ring-cyan-400/30"
                 placeholder="your.email@example.com"
               />
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-indigo-300/70" />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             </div>
           </div>
           <div className="relative">
-            <Label htmlFor="message" className="text-indigo-200 mb-2 block">Message</Label>
+            <Label htmlFor="message" className="text-gray-300 mb-2 block">Message</Label>
             <div className="relative">
               <Textarea 
                 id="message" 
                 name="message" 
                 required 
-                className="pl-10 bg-white/10 border-indigo-300/30 text-white placeholder-indigo-300/50 focus:border-indigo-400 focus:ring focus:ring-indigo-400/30"
+                className="pl-10 bg-white bg-opacity-10 border-gray-700 text-white placeholder-gray-400 focus:border-cyan-400 focus:ring focus:ring-cyan-400/30"
                 placeholder="Your message here..."
                 rows={4}
               />
-              <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-indigo-300/70" />
+              <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
             </div>
           </div>
           <Button 
             type="submit" 
-            className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+            className="w-full bg-cyan-400 text-gray-900 hover:bg-cyan-300 transition-colors text-lg px-8 py-3 rounded-md flex items-center justify-center"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
               <motion.div
-                className="h-5 w-5 border-t-2 border-r-2 border-white rounded-full animate-spin"
+                className="h-5 w-5 border-t-2 border-r-2 border-gray-900 rounded-full animate-spin"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
               />

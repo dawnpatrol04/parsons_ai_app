@@ -14,8 +14,8 @@ export default function MainContent() {
       <HeroSection />
       <CustomSolutionsSection />
       <ProductsSection />
-      <AISection />
-      <RoboticsSection />
+      {/* <AISection />
+      <RoboticsSection /> */}
       <AboutSection />
       <ContactSection />
     </main>

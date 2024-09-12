@@ -3,88 +3,55 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { useRef, useEffect, useState } from "react"
 
 export default function HeroSection() {
-  const parallaxRef = useRef<HTMLDivElement>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('resize', handleResize)
-
-    handleResize()
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-
-  const calculateParallax = (depth = 1) => {
-    if (windowSize.width === 0 || windowSize.height === 0) return 'translate(0px, 0px)'
-    const x = (mousePosition.x - windowSize.width / 2) / depth
-    const y = (mousePosition.y - windowSize.height / 2) / depth
-    return `translate(${x}px, ${y}px)`
-  }
-
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero-background.jpg"
-          alt="Hero background"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          priority
-        />
+    <section className="relative min-h-screen flex items-center justify-center bg-black text-white overflow-hidden pt-20">
+      <div className="container mx-auto px-4 z-10">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.p
+            className="text-cyan-400 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            Automation for the 21st Century
+          </motion.p>
+          <motion.h1
+            className="text-5xl md:text-7xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <span className="text-cyan-400">AI-Powered</span> Solutions, Simplified
+          </motion.h1>
+          <motion.p
+            className="text-xl mb-8 text-gray-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            With Parsons AI Automated Solutions, our experienced team and purpose-built technology will keep your AI systems up-to-date, and provide actionable insights at the touch of a button.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <Button className="bg-cyan-400 text-black hover:bg-cyan-300 transition-colors text-lg px-8 py-3 rounded-full">
+              Schedule a Demo
+            </Button>
+          </motion.div>
+        </div>
       </div>
-      <div className="relative z-10 text-center" ref={parallaxRef}>
-        <motion.h1
-          className="text-7xl font-black mb-4 leading-tight"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{ 
-            transform: calculateParallax(20),
-            background: 'linear-gradient(45deg, #4F46E5, #7C3AED, #2563EB)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            color: 'transparent'
-          }}
-        >
-          PARSONS AI
-        </motion.h1>
-        <motion.p
-          className="text-xl mb-6 max-w-2xl mx-auto text-white"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          style={{ transform: calculateParallax(40) }}
-        >
-          Revolutionizing AI and robotics with cutting-edge solutions for a smarter, more efficient future.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          style={{ transform: calculateParallax(60) }}
-        >
-          <Button className="bg-white text-indigo-500 hover:bg-indigo-100 text-lg px-8 py-3 rounded-full">
-            Explore Our Solutions
-          </Button>
-        </motion.div>
+      <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-1/2 h-3/4 z-0">
+        <Image
+          src="/ai-dashboard.png"
+          alt="AI Dashboard"
+          layout="fill"
+          objectFit="contain"
+          className="opacity-50"
+        />
       </div>
     </section>
   )

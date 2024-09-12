@@ -1,106 +1,65 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Menu } from 'lucide-react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { scrollY } = useScroll()
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ['rgba(79, 70, 229, 0.9)', 'rgba(255, 255, 255, 0.9)']
-  )
-  const textColor = useTransform(
-    scrollY,
-    [0, 100],
-    ['rgba(255, 255, 255, 1)', 'rgba(79, 70, 229, 1)']
-  )
 
-  const [currentBgColor, setCurrentBgColor] = useState('rgba(79, 70, 229, 0.9)')
-  const [currentTextColor, setCurrentTextColor] = useState('rgba(255, 255, 255, 1)')
-
-  useEffect(() => {
-    const unsubscribeBg = backgroundColor.onChange(setCurrentBgColor)
-    const unsubscribeText = textColor.onChange(setCurrentTextColor)
-    return () => {
-      unsubscribeBg()
-      unsubscribeText()
-    }
-  }, [backgroundColor, textColor])
-
-  const navItems = ['CUSTOM', 'PRODUCTS', 'AI', 'ROBOTICS', 'ABOUT', 'CONTACT']
+  const navItems = ['CUSTOM', 'PRODUCTS', 'AI', 'ROBOTICS', 'ABOUT']
 
   return (
-    <motion.header 
-      className="py-4 px-6 fixed top-0 left-0 right-0 z-50 backdrop-blur-md"
-      style={{ backgroundColor: currentBgColor }}
-    >
+    <header className="py-4 px-6 bg-black fixed top-0 left-0 right-0 z-50">
       <nav className="flex justify-between items-center max-w-7xl mx-auto">
         <Link href="/" className="flex items-center">
-          <div className="relative w-12 h-12 mr-4">
+          <div className="relative w-8 h-8 mr-2">
             <Image
               src="/logo.png"
               alt="Parsons AI Logo"
-              fill
-              style={{ objectFit: 'contain' }}
-              className="mr-2"
+              layout="fill"
+              objectFit="contain"
             />
           </div>
-          <span className="text-2xl font-bold" style={{ color: currentTextColor }}>Parsons AI</span>
+          <span className="text-2xl font-bold text-white">PARSONS AI</span>
         </Link>
         
-        {/* Mobile menu button */}
         <button 
-          className="md:hidden"
+          className="md:hidden text-white"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
-          style={{ color: currentTextColor }}
         >
           <Menu size={24} />
         </button>
 
-        {/* Desktop navigation */}
         <div className="hidden md:flex space-x-6">
           {navItems.map((item) => (
-            <Link
+            <motion.a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="text-sm font-medium relative"
-              style={{ color: currentTextColor }}
+              className="text-sm font-medium text-white hover:text-cyan-400 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {item}
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 h-0.5"
-                style={{ backgroundColor: currentTextColor }}
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.2 }}
-              />
-            </Link>
+            </motion.a>
           ))}
         </div>
 
-        {/* Mobile navigation */}
         {isMenuOpen && (
-          <div 
-            className="absolute top-full left-0 right-0 md:hidden"
-            style={{ backgroundColor: currentBgColor }}
-          >
+          <div className="absolute top-full left-0 right-0 bg-black md:hidden">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="block py-2 px-4 text-sm font-medium hover:bg-opacity-10 hover:bg-white"
-                style={{ color: currentTextColor }}
+                className="block py-2 px-4 text-sm font-medium text-white hover:text-cyan-400 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item}
-              </Link>
+              </a>
             ))}
           </div>
         )}
@@ -110,19 +69,11 @@ export default function Header() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Button 
-            variant="outline" 
-            className="border-2 hover:bg-opacity-10"
-            style={{ 
-              color: currentTextColor, 
-              borderColor: currentTextColor,
-              backgroundColor: 'transparent'
-            }}
-          >
-            GET STARTED
+          <Button className="bg-cyan-400 text-black hover:bg-cyan-300 transition-colors">
+            Schedule a Demo
           </Button>
         </motion.div>
       </nav>
-    </motion.header>
+    </header>
   )
 }

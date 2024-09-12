@@ -24,34 +24,51 @@ export default function CustomSolutionsSection() {
   ]
 
   return (
-    <section id="custom" className="py-20 px-6 bg-gradient-to-r from-purple-700 to-indigo-700 text-white">
-      <h2 className="text-5xl font-bold mb-10 text-center">Custom Solutions</h2>
-      <div className="max-w-4xl mx-auto">
-        <p className="text-xl mb-8 text-center">
-          At Parsons AI, we don't just offer ready-made products — we specialize in building custom solutions tailored to meet your specific business needs. Whether you need to extend the functionality of existing systems or create new ones from the ground up, our expert team can deliver cutting-edge AI and robotics solutions that align with your goals.
-        </p>
+    <section id="custom" className="py-20 px-6 bg-black text-white">
+      <div className="max-w-6xl mx-auto">
+        <motion.h2 
+          className="text-5xl font-bold mb-10 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Finally, a <span className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">simple</span> way to manage your business.
+        </motion.h2>
+        <motion.p 
+          className="text-xl mb-12 text-center text-gray-300 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          At Parsons AI, we specialize in building custom solutions tailored to meet your specific business needs. Our expert team delivers cutting-edge AI and robotics solutions that align with your goals.
+        </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              className="bg-white bg-opacity-10 backdrop-blur-lg p-6 rounded-lg"
+              className="bg-gray-900 p-6 rounded-lg"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
             >
-              <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
-              <p className="text-gray-200">{service.description}</p>
+              <h3 className="text-2xl font-semibold mb-2 text-cyan-400">{service.title}</h3>
+              <p className="text-gray-300">{service.description}</p>
             </motion.div>
           ))}
         </div>
-        <div className="text-center mt-12">
-          <p className="text-xl mb-6">
+        <motion.div 
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <p className="text-xl mb-6 text-gray-300">
             Partner with Parsons AI to revolutionize your business with innovative, customized technologies.
           </p>
-          <Button className="bg-white text-indigo-500 hover:bg-indigo-100 text-lg px-8 py-3 rounded-full">
+          <Button className="bg-gradient-to-r from-blue-400 to-cyan-400 text-black hover:from-blue-500 hover:to-cyan-500 text-lg px-8 py-3 rounded-full transition-all duration-300">
             Get Custom Solution
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
