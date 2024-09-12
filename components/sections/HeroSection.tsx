@@ -61,7 +61,7 @@ export default function HeroSection() {
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-            textFillColor: 'transparent'
+            color: 'transparent'
           }}
         >
           PARSONS AI
