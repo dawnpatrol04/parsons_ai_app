@@ -1,17 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: 'export', // Ensure the site is exported statically
   images: {
-    unoptimized: true,
+    unoptimized: true, // Since GitHub Pages can't optimize images dynamically
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  basePath: process.env.NODE_ENV === 'production' ? '/parsons_ai_app' : '', // Base path for the project
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/parsons_ai_app/' : '', // Prefix for assets
 };
-
-if (process.env.NODE_ENV === 'production') {
-  nextConfig.basePath = '/parsons_ai_app';
-  nextConfig.assetPrefix = '/parsons_ai_app/';
-}
 
 export default nextConfig;

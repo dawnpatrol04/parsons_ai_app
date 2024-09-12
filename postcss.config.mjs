@@ -1,11 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',
-  basePath: '/parsons_ai_app',
-  assetPrefix: '/parsons_ai_app/',
-  images: {
-    unoptimized: true,
+/** @type {import('postcss-load-config').Config} */
+const config = {
+  plugins: {
+    tailwindcss: {},
   },
 };
 
-export default nextConfig;
+export default config;
