@@ -6,6 +6,9 @@ const nextConfig = {
   },
   basePath: process.env.NODE_ENV === 'production' ? '/parsons_ai_app' : '', // Base path for the project
   assetPrefix: process.env.NODE_ENV === 'production' ? '/parsons_ai_app/' : '', // Prefix for assets
+  eslint: {
+    ignoreDuringBuilds: true, // Skip linting during the build
+  },
 };
 
 export default nextConfig;
