@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -20,12 +20,12 @@ export default function ContactForm() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
     setError('')
