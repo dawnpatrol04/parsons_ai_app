@@ -72,7 +72,7 @@ export default function ContactForm() {
  
 
   return (
-    <section className="flex items-center justify-center min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white py-20 px-4">
+    <section id="contact" className="flex items-center justify-center min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white py-20 px-4">
       <div className="w-full max-w-md">
         <motion.div
           className="text-center mb-8"

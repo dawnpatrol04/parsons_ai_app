@@ -75,11 +75,11 @@ export default function CustomSolutionsSection() {
           viewport={{ once: true }}
         >
           <p className="text-xl mb-8 text-gray-300">
-            Ready to disrupt the norm? Let's build the future together.
+            Ready to disrupt the norm? 
           </p>
-          <Button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-8 rounded-full text-lg transition-all duration-300">
+          {/* <Button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-8 rounded-full text-lg transition-all duration-300">
             Let's Innovate Together
-          </Button>
+          </Button> */}
         </motion.div>
       </div>
     </section>

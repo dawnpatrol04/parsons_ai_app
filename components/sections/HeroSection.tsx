@@ -24,9 +24,9 @@ export default function HeroSection() {
           Elevate your projects with our breakthrough solutions and unparalleled expertise. 
           Dive into the future of technology with us today.
         </p>
-        <Button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-lg">
+        <a href="#contact" className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-lg">
           Get Started
-        </Button>
+        </a>
       </div>
     </section>
   )
