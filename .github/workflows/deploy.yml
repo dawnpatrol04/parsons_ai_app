@@ -25,12 +25,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    # Skip the build step temporarily
-    # - name: Build and export static site
-    #   run: npm run build  
+    - name: Build and export static site
+      run: npm run build  # No need to run `npm run export` as it's integrated in `npm run build`
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./out  # Ensure this is the correct output directory
+        publish_dir: ./out  # This should point to the output folder created by the build
