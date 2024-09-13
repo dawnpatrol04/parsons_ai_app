@@ -18,10 +18,10 @@ export default function Header() {
   ]
 
   return (
-    <header className="py-4 px-6 bg-black fixed top-0 left-0 right-0 z-50">
+    <header className="py-4 px-6 bg-black fixed top-0 left-0 right-0 z-50 shadow-md">
       <nav className="flex justify-between items-center max-w-7xl mx-auto">
         <Link href="/" className="flex items-center">
-          <div className="relative w-8 h-8 mr-2">
+          <div className="relative w-10 h-10 mr-2 transform transition-transform duration-300 hover:scale-110">
             <Image
               src="/logo.png"
               alt="Parsons AI Logo"
@@ -29,11 +29,13 @@ export default function Header() {
               objectFit="contain"
             />
           </div>
-          <span className="text-2xl font-bold text-white">PARSONS AI</span>
+          <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-500 to-blue-600 hover:from-teal-500 hover:to-blue-700 transition-all duration-500 ease-in-out shadow-lg">
+            PARSONS AI
+          </span>
         </Link>
-        
+
         <button 
-          className="md:hidden text-white"
+          className="md:hidden text-white hover:text-cyan-400 transition-colors"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -55,29 +57,14 @@ export default function Header() {
         </div>
 
         {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-black md:hidden">
+          <div className="absolute top-full left-0 right-0 bg-black text-white p-4 md:hidden">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block py-2 px-4 text-sm font-medium text-white hover:text-cyan-400 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
+              <Link key={item.name} href={item.href}>
+                <a className="block py-2 px-4 hover:bg-gray-800 transition-colors">{item.name}</a>
+              </Link>
             ))}
           </div>
         )}
-
-        <motion.div
-          className="hidden md:block"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <Button className="bg-cyan-400 text-black hover:bg-cyan-300 transition-colors">
-            Schedule a Demo
-          </Button>
-        </motion.div>
       </nav>
     </header>
   )

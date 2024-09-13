@@ -1,72 +1,73 @@
 'use client'
 
-import { motion } from "framer-motion"
-import { Lightbulb, Users, Microscope, Handshake } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { FaLightbulb, FaUsers, FaMicroscope, FaHandshake } from 'react-icons/fa'
 
 export default function AboutSection() {
   const benefits = [
     {
-      title: 'Innovative Solutions',
-      description: 'Parsons AI is at the forefront of AI and robotics technology, delivering cutting-edge solutions that transform businesses.',
-      icon: Lightbulb,
+      title: 'Pioneering Innovation',
+      description: 'We lead the way in AI and robotics, delivering groundbreaking solutions that redefine industries.',
+      icon: <FaLightbulb size={50} className="text-teal-400 mb-4" />,
     },
     {
-      title: 'Expert Team',
-      description: 'Our team of world-class AI researchers and engineers brings decades of combined experience to every project.',
-      icon: Users,
+      title: 'World-Class Team',
+      description: 'Our experts bring unparalleled experience and passion to every project, pushing the boundaries of technology.',
+      icon: <FaUsers size={50} className="text-teal-400 mb-4" />,
     },
     {
-      title: 'Cutting-edge Research',
-      description: 'We continuously push the boundaries of AI and robotics, turning theoretical breakthroughs into practical applications.',
-      icon: Microscope,
+      title: 'Cutting-Edge Research',
+      description: 'Turning visionary ideas into reality through relentless research and development.',
+      icon: <FaMicroscope size={50} className="text-teal-400 mb-4" />,
     },
     {
-      title: 'Industry Partnerships',
-      description: 'Parsons AI collaborates with leading companies and institutions to drive innovation across various sectors.',
-      icon: Handshake,
-    }
+      title: 'Strategic Partnerships',
+      description: 'Collaborating with industry leaders to amplify impact and drive collective success.',
+      icon: <FaHandshake size={50} className="text-teal-400 mb-4" />,
+    },
   ]
 
   return (
-    <section className="pt-40 pb-20 bg-gradient-to-b from-gray-900 via-blue-900 to-indigo-900 text-white relative">
-      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-gray-900 to-transparent"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.h2 
-          className="text-4xl md:text-5xl font-bold mb-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+    <section id="about" className="py-20 bg-gradient-to-b from-black via-gray-900 to-black text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          className="text-5xl font-extrabold mb-16 text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
         >
-          About <span className="text-cyan-400">Parsons AI</span>
+          Meet <span className="text-teal-400">Parsons AI</span>
         </motion.h2>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {benefits.map((benefit, index) => (
-            <motion.div 
+            <motion.div
               key={benefit.title}
-              className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              className="bg-gray-800 p-8 rounded-lg text-center hover:bg-gray-700 transform hover:-translate-y-2 transition-all duration-300"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
             >
-              <div className="flex items-center mb-4">
-                <benefit.icon className="w-10 h-10 text-cyan-400 mr-4" />
-                <h3 className="text-xl font-bold text-cyan-400">{benefit.title}</h3>
+              <div className="flex flex-col items-center">
+                {benefit.icon}
+                <h3 className="text-2xl font-semibold mb-4">{benefit.title}</h3>
+                <p className="text-gray-300">{benefit.description}</p>
               </div>
-              <p className="text-gray-300">{benefit.description}</p>
             </motion.div>
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          viewport={{ once: true }}
         >
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            At Parsons AI, we're committed to pushing the boundaries of artificial intelligence and robotics. 
-            Our mission is to create intelligent solutions that solve complex problems and drive innovation across industries.
+            At Parsons AI, we're not just building technology—we're shaping the future. Our mission is to empower businesses with intelligent solutions that unlock new possibilities and drive transformative growth.
           </p>
         </motion.div>
       </div>
