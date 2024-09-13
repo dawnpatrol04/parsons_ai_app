@@ -4,8 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true, // Since GitHub Pages can't optimize images dynamically
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/parsons_ai_app' : '', // Base path for the project
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/parsons_ai_app/' : '', // Prefix for assets
+  // Remove basePath and assetPrefix
   eslint: {
     ignoreDuringBuilds: true, // Skip linting during the build
   },
