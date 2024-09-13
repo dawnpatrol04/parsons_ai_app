@@ -89,6 +89,15 @@ const ParticleMaterial = shaderMaterial(
 
 extend({ ParticleMaterial })
 
+// Add this type declaration to fix the TypeScript error
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'particleMaterial': any
+    }
+  }
+}
+
 export function ParticleWave() {
   const points = useRef<THREE.Points>(null)
   const { mouse } = useThree()
