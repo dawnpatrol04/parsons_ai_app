@@ -4,7 +4,7 @@ import { useMemo, useRef } from 'react'
 import { useFrame, extend, useThree } from '@react-three/fiber'
 import { shaderMaterial } from '@react-three/drei'
 import * as THREE from 'three'
-import { Noise } from 'noisejs'
+import Noise from 'noisejs'
 
 // Custom shader material
 const ParticleMaterial = shaderMaterial(
