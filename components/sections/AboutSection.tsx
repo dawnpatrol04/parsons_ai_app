@@ -5,9 +5,10 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial, OrbitControls } from '@react-three/drei'
 import { motion } from 'framer-motion'
 import { FaLightbulb, FaUsers, FaMicroscope, FaHandshake } from 'react-icons/fa'
+import * as THREE from 'three'
 
 function Particles() {
-  const ref = useRef()
+  const ref = useRef<THREE.Points>(null)
   
   // Create a grid of particles
   const particles = useMemo(() => {
@@ -28,14 +29,16 @@ function Particles() {
 
   // Animate particles to move up and down like terrain
   useFrame(({ clock }) => {
-    const time = clock.getElapsedTime()
-    const positions = ref.current.geometry.attributes.position.array
+    if (ref.current && ref.current.geometry.attributes.position) {
+      const time = clock.getElapsedTime()
+      const positions = ref.current.geometry.attributes.position.array
 
-    for (let i = 1; i < positions.length; i += 3) {
-      positions[i] = Math.sin((positions[i - 1] + positions[i + 1] + time) * 0.5) * 1.5
+      for (let i = 1; i < positions.length; i += 3) {
+        positions[i] = Math.sin((positions[i - 1] + positions[i + 1] + time) * 0.5) * 1.5
+      }
+
+      ref.current.geometry.attributes.position.needsUpdate = true
     }
-
-    ref.current.geometry.attributes.position.needsUpdate = true
   })
 
   return (
