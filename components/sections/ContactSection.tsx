@@ -8,9 +8,18 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Send, User, Mail, MessageSquare, Phone, Globe } from 'lucide-react'
 
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  country: string;
+  message: string;
+  [key: string]: string; // Add index signature
+}
+
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -32,7 +41,7 @@ export default function ContactForm() {
 
     const formDataForGoogle = new FormData()
     Object.keys(formData).forEach(key => {
-      formDataForGoogle.append(key, formData[key])
+      formDataForGoogle.append(key, formData[key as keyof FormData])
     })
 
     try {
@@ -60,21 +69,7 @@ export default function ContactForm() {
     }
   }
 
-  if (success) {
-    return (
-      <section className="flex items-center justify-center min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white py-20 px-4">
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">Thank You!</h2>
-          <p className="text-xl text-gray-300">Your message has been sent successfully. We'll get back to you soon.</p>
-        </motion.div>
-      </section>
-    )
-  }
+ 
 
   return (
     <section className="flex items-center justify-center min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white py-20 px-4">
